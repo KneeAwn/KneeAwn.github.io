@@ -1,1 +1,54 @@
-hello world
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+</head>
+<body>
+  <h1 id="commitment-scheme">Commitment Scheme</h1>
+  <h2 id="example">Example</h2>
+  <p>If two people, Alice and Bob, were to bet on a coin flip, the process could go as follows: Alice calls the side the coin will land on before the flip, Bob then flips the coin and the result is determined. Here’s where we add a little wrinkle. Suppose that Alice is somewhere else and can’t see the coin flip. Now, Bob can lie about the result of the flip and win the bet every time! A quick solution might be to let Alice to call the flip after Bob says what side it landed on, but obviously that would just let Alice cheat.</p>
+  <h2 id="problem">Problem</h2>
+  <p>We can phrase our problem by listing our requirements: 1. Alice has to be able to provide her information ahead of time so she can’t cheat by knowing the result. 2. Bob has to be unable to know the information given by Alice when he flips the coin so he can’t lie about the result. 3. The information given by Alice has to be able to be revealed by Alice after the flip without being modified.</p>
+  <h2 id="solution">Solution</h2>
+  <p>The solution to our problem is to use a commitment scheme. A commitment scheme is an idea in cryptography consisting of two phases: committing and revealing. In the committing phase, a value is chosen and “committed” to, in the sense that it cannot be changed without starting this process over. Value here is a general term for any data. At a later point, we go to the revealing phase where the sender of the value reveals the value’s unencrypted form for the receiver.</p>
+  <h2 id="example-1">Example</h2>
+  <p>Let’s go through what this might look like.</p>
+  <ol type="1">
+  <li><p>I have a secret that I encrypt.</p>
+  <pre><code>    Me
+     Heads
+      |
+      V
+   +-----+      +-----+
+   |     |  -&gt;  | ??? |
+   |     |      |     |
+   +-----+      +-----+</code></pre></li>
+  <li><p>I pass off the encrypted data to you</p>
+  <pre><code>   Me           You
+
+
+   +-----+      +-----+
+   | ??? |  -&gt;  | ??? |
+   |     |      |     |
+   +-----+      +-----+</code></pre></li>
+  <li><p>You perform whatever you need to</p>
+  <pre><code>   You
+    coin flip -&gt; Ⓗ
+
+   +-----+
+   | ??? |
+   |     |
+   +-----+</code></pre></li>
+  <li><p>I give you the means to decrypt my data, revealing its information</p>
+  <pre><code>    You
+      Ⓗ
+
+   +-----+       +-----+
+   | ??? |   -&gt;  |Heads|
+   |     |       |     |
+   +-----+       +-----+</code></pre></li>
+  <li><p>Now we can both agree that neither party has cheated by allowing the information to be set, hidden, and revealed at the proper times.</p></li>
+  </ol>
+  <h2 id="application">Application</h2>
+  <p>This kind of scheme may seem contrived and only useful in strange coin-flipping conundrums, but one case where this setup shines is in zero-knowledge proofs. Zero-knowledge proofs are a topic for another time, but suffice it to say that there is a method of asserting that a proof exists while not giving any knowledge of how. Such a method uses the ability of fixing a value then revealing it to work.</p>
+  <h2 id="conclusion">Conclusion</h2>
+  <p>I hope this was fun!</p>
+</body>
