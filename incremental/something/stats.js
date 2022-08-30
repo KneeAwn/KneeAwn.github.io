@@ -9,6 +9,6 @@ function setMentalHealth() {
         el.innerHtml = "Mental Health: " + state.mentalHealth + "/100"
 }
 
-function update(){
+function updateStats(){
         setMentalHealth()
 }
